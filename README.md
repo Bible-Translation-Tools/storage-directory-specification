@@ -39,7 +39,7 @@ Names in { } denote a set, with the possible values contained in that set being 
 
  - FILENAME = the name of the file
 
-**NOTE: When dealing with TR files, or other similar container files, the media format is the format [such as wav or mp3] of files inside the container (TR).**
+**NOTE: When dealing with TR files, or other similar container files, the media format is the format (such as wav or mp3) of files inside the container (TR).**
 
 ## Media format examples (not exhaustive):
  - Compressed: mp3, mp4, ogg, m4a, 3gp, jpg, png, gif
@@ -48,7 +48,7 @@ Names in { } denote a set, with the possible values contained in that set being 
 # Instructions:
 1. Begin with the language code followed by /
 2. Add the identifier from the dublin_core section of the resource container manifest followed by /
-3. If the file represents the entire resource container, add /CONTENTS/ skip to step 5.
+3. If the file represents the entire resource container, add CONTENTS/ skip to step 5.
 4. Add the identifier of the project followed by /CONTENTS/
 5. If the media file is not inside a container format (such as tr) skip to step 7.
 6. Add the file extension (without the .) of the container format followed by /
@@ -117,7 +117,7 @@ en/  ulb/   gen/  CONTENTS/  mp3/   hi/    chunk/
             |           |       chunk/
             |           |       verse/
             |           -----------------------------------------
-            |           tr/     /mp3    hi/     chunk/      
+            |           tr/     /mp3    hi/      chunk/      
             |           |       |       |        chapter/
             |           |       |       |        verse/
             |           |       |       -------------------------
