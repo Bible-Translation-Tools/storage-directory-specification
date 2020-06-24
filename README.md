@@ -7,6 +7,8 @@
                -> CONTENTS/{CONTAINER}
 
         {PROJECT} -> {CHAPTER}
+                  -> CONTENTS/{MEDIA}
+                  -> CONTENTS/{CONTAINER}
 
             {CHAPTER} -> {CONTAINER}
                       -> {MEDIA}
@@ -54,14 +56,15 @@ Names in { } denote a set, with the possible values contained in that set being 
 2. Add the identifier from the dublin_core section of the resource container manifest followed by /
 3. If the file represents the entire resource container, add CONTENTS/ skip to step 6.
 4. Add the identifier of the project followed by /
-5. Add the chapter number that the content represents followed by /
-6. If the media file is not inside a container format (such as tr) skip to step 8.
-7. Add the file extension (without the .) of the container format followed by /
-8. Add the file extension (without the .) of the media format followed by /
-9. If the media format is an uncompressed format, skip to step 11.
-10. Add the quality of the file (either "hi" for high quality or "low" for low quality) followed by /
-11. Add "book", "chapter", "chunk", or "verse" based on how much content is grouped by the format, followed by /
-12. Add the filename
+5. If the file represents the entire project, add CONTENTS/ skip to step 7.
+6. If the file represents content in a chapter, add the chapter number followed by /
+7. If the media file is not inside a container format (such as tr) skip to step 9.
+8. Add the file extension (without the .) of the container format followed by /
+9. Add the file extension (without the .) of the media format followed by /
+10. If the media format is an uncompressed format, skip to step 12.
+11. Add the quality of the file (either "hi" for high quality or "low" for low quality) followed by /
+12. Add "book", "chapter", "chunk", or "verse" based on how much content is grouped by the format, followed by /
+13. Add the filename
 
 **NOTE: Unless intentionally created for low bandwidth usage, quality for compressed formats should be considered "hi" by default.**
 
@@ -73,94 +76,93 @@ Names in { } denote a set, with the possible values contained in that set being 
 3. proceed to step 4.
 4. en/ulb/gen/
 5. en/ulb/gen/3/
-6. proceed to step 7.
-7. en/ulb/gen/3/tr/mp3/
-8. proceed to step 10.
-9. en/ulb/gen/3/tr/mp3/hi/
-10. en/ulb/gen/3/tr/mp3/hi/chunk/
-11. en/ulb/gen/3/tr/mp3/hi/chunk/en_ulb_gen_chunk.tr
+6. en/ulb/gen/3/tr/mp3/
+7. proceed to step 11.
+8. en/ulb/gen/3/tr/mp3/hi/
+9. en/ulb/gen/3/tr/mp3/hi/chunk/
+10. en/ulb/gen/3/tr/mp3/hi/chunk/en_ulb_gen_c03_chunk.tr
 
 ## Example fileystem:
 ```
-en/  ulb/   gen/        1/      mp3/   hi/    chunk/      
-            |           |       |      |      chapter/
-            |           |       |      |      verse/
-            |           |       |      -----------------------------       
-            |           |       |      low/   chunk/
-            |           |       |      |      chapter/
-            |           |       |      |      verse/
-            |           |       |      -----------------------------
-            |           |       ------------------------------------   
-            |           |       wav/    chapter/
-            |           |       |       chunk/
-            |           |       |       verse/
-            |           |       ------------------------------------   
-            |           |       tr/     mp3/    hi/     chunk/      
-            |           |       |       |       |       chapter/
-            |           |       |       |       |       verse/            
-            |           |       |       |       --------------------
-            |           |       |       |       low/    chunk/
-            |           |       |       |       |       chapter/
-            |           |       |       |       |       verse/
-            |           |       |       |       --------------------
-            |           |       |       ----------------------------
-            |           |       |       wav/      chapter/
-            |           |       |       |         chunk/
-            |           |       |       |         verse/
-            |           |       |       ----------------------------
-            |           |       ------------------------------------
-            |           2/      mp3/   hi/    chunk/      
-            |           |       |      |      chapter/
-            |           |       |      |      verse/
-            |           |       |      -----------------------------       
-            |           |       |      low/   chunk/
-            |           |       |      |      chapter/
-            |           |       |      |      verse/
-            |           |       |      -----------------------------
-            |           |       ------------------------------------   
-            |           |       wav/    chapter/
-            |           |       |       chunk/
-            |           |       |       verse/
-            |           |       ------------------------------------   
-            |           |       tr/     mp3/    hi/     chunk/      
-            |           |       |       |       |       chapter/
-            |           |       |       |       |       verse/            
-            |           |       |       |       --------------------
-            |           |       |       |       low/    chunk/
-            |           |       |       |       |       chapter/
-            |           |       |       |       |       verse/
-            |           |       |       |       --------------------
-            |           |       |       ----------------------------
-            |           |       |       wav/      chapter/
-            |           |       |       |         chunk/
-            |           |       |       |         verse/
-            |           |       |       ----------------------------
-            |           |       ------------------------------------
-            -----------------------------------------------------
+en/  ulb/   gen/        CONTENTS/      mp3/   hi/    chunk/      
+            |           |              |      |      chapter/
+            |           |              |      |      verse/
+            |           |              |      -----------------------------       
+            |           |              |      low/   chunk/
+            |           |              |      |      chapter/
+            |           |              |      |      verse/
+            |           |              |      -----------------------------
+            |           |              ------------------------------------   
+            |           |              wav/    chapter/
+            |           |              |       chunk/
+            |           |              |       verse/
+            |           |              ------------------------------------   
+            |           |              tr/     mp3/    hi/     chunk/      
+            |           |              |       |       |       chapter/
+            |           |              |       |       |       verse/            
+            |           |              |       |       --------------------
+            |           |              |       |       low/    chunk/
+            |           |              |       |       |       chapter/
+            |           |              |       |       |       verse/
+            |           |              |       |       --------------------
+            |           |              |       ----------------------------
+            |           |              |       wav/      chapter/
+            |           |              |       |         chunk/
+            |           |              |       |         verse/
+            |           |              |       ----------------------------
+            |           |              ------------------------------------
+            |           1/             mp3/   hi/    chunk/      
+            |           |              |      |      chapter/
+            |           |              |      |      verse/
+            |           |              |      -----------------------------       
+            |           |              |      low/   chunk/
+            |           |              |      |      chapter/
+            |           |              |      |      verse/
+            |           |              |      -----------------------------
+            |           |              ------------------------------------   
+            |           |              wav/    chapter/
+            |           |              |       chunk/
+            |           |              |       verse/
+            |           |              ------------------------------------   
+            |           |              tr/     mp3/    hi/     chunk/      
+            |           |              |       |       |       chapter/
+            |           |              |       |       |       verse/            
+            |           |              |       |       --------------------
+            |           |              |       |       low/    chunk/
+            |           |              |       |       |       chapter/
+            |           |              |       |       |       verse/
+            |           |              |       |       --------------------
+            |           |              |       ----------------------------
+            |           |              |       wav/      chapter/
+            |           |              |       |         chunk/
+            |           |              |       |         verse/
+            |           |              |       ----------------------------
+            |           |              ------------------------------------
+            ---------------------------------------------------------------
             CONTENTS/   mp3/    /hi     chunk/      
             |           |       |       chapter/
             |           |       |       verse/
-            |           |       ---------------------------------
+            |           |       -------------------------------------------
             |           |       /low    chunk/
             |           |       |       chapter/
             |           |       |       verse/
-            |           |       ---------------------------------
+            |           |       -------------------------------------------
             |           wav/    chapter/
             |           |       chunk/
             |           |       verse/
-            |           -----------------------------------------
+            |           ---------------------------------------------------
             |           tr/     /mp3    hi/     chunk/      
             |           |       |       |       chapter/
             |           |       |       |       verse/
-            |           |       |       -------------------------
+            |           |       |       -----------------------------------
             |           |       |       low/    chunk/
             |           |       |       |       chapter/
             |           |       |       |       verse/
-            |           |       |       -------------------------
+            |           |       |       -----------------------------------
             |           |       wav/    chapter/
             |           |       |       chunk/
             |           |       |       verse/
-            |           |       ---------------------------------
-            |           -----------------------------------------
-            -----------------------------------------------------
+            |           |       -------------------------------------------
+            |           ---------------------------------------------------
+            ---------------------------------------------------------------
 ```
